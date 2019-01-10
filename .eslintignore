@@ -1,6 +1,4 @@
-test/unit/coverage/**
-test/unit/*.js
-test/e2e/*.js
+
 # 代码格式审查忽略列表，如果不想要代码审查，可以设置一下所有的文件夹，即可忽略
 #/.electron-vue
 #/build
