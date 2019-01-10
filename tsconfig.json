@@ -1,33 +1,4 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "strict": true,
-    "jsx": "preserve",
-    "importHelpers": true,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "types": [
-      "webpack-env",
-      "mocha",
-      "chai"
-    ],
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
-  },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
@@ -37,5 +8,38 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "compilerOptions": {
+    "target": "esnext",                   //指定ECMAscript的目标标准，esnext意为 最新的规范
+    "module": "esnext",                   //采用模块系统
+    "strict": true,                       //严格模式来解析
+    "jsx": "preserve",                    //在TXS中支持JSX语法
+    "importHelpers": true,                //从tslib导入辅助工具函数（例如 __extends,__rest ……
+    "moduleResolution": "node",           //以node的方式来处理模块
+    "experimentalDecorators": true,       //开启装饰器功能(@注解）
+    "esModuleInterop": true,              //使用此标记可以输出旧的模块格式 commonjs模块被作为默认导入
+    "allowSyntheticDefaultImports": true, //允许从没有设置默认导出的模块中默认导入
+    "sourceMap": true,                    //开启sourceMap功能
+    "baseUrl": ".",                       //解析非相对模块名的基准目录
+    // ts默认所有可见的 @types 都会在编译的过程被包含，包块node-module,但是制定了types就只有被列出来的包才会包含
+    "types": [
+      "webpack-env",
+      "mocha",
+      "chai"
+    ],
+    "paths": {                              //模块名到基于 baseUrl的路径映射的列表
+      "@/*": [                              //映射 src/*  目录为 @/*
+        "src/*"
+      ]
+    },
+    // 编译ts过程中需要引入的库的列表，如果没有设置，默认会引入
+    // 1. 针对target:es5 (DOM/ES5/ScriptHost)
+    // 2. 针对target:es6 (DOM/ES6/DOM.Iterable/ScriptHost)
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
+  }
 }
