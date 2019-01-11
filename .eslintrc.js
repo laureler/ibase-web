@@ -24,6 +24,8 @@ module.exports = {
 		'no-extend-native': 0,
 		// allow paren-less arrow functions
 		'arrow-parens': 0,
+		// 不再禁用 三目表达式非必需返回值
+		'no-unneeded-ternary':0,
 		// allow async-await 允许异步等待
 		'generator-star-spacing': 0,
 		// allow debugger during development 允许开发过程使用调试debugger

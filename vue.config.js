@@ -22,7 +22,7 @@ module.exports = {
 		// modules:false    //只有*.module结尾的文件才会被认为css module模块，如果设置为true，所有的[css/scss/sass/less/sty*]文件都会认为css module
 		// extract: process.env.NODE_ENV == 'production' ? true : false  //是否把css从内联样式抽取出来，如果你是开发组件库，建议你(哪怕是生产环境)不要抽取,开发模式为了热部署，就不抽取了。
 		// sourceMap:false //是否开启css sourceMap
-		loaderOptions: {
+		/* loaderOptions: {
 			// css: {}, //选项会传递给 css-loader
 			// postcss: {}  //选项会传递给 postcss-loader
 			// sass: {   //选项会传递给 sass-loader
@@ -31,13 +31,13 @@ module.exports = {
 			// }
 			// less: {}  //选项会传递给 less-loader
 			// stylus: {}  //选项会传递给 stylus-loader
-		}
+		} */
 	},
 	devServer: {// devServer支持所有的webpack-dev-server选项
-		overlay: {
-			warnings: true, // 开启eslint编译警告
-			errors: false // 关闭浏览器eslint编译错误提示（eslint会导致编译错误)
-		},
+		// overlay: {
+		// 	warnings: true, // 开启eslint编译警告
+		// 	errors: false // 关闭浏览器eslint编译错误提示（eslint会导致编译错误)
+		// },
 		// proxy: [{ // 代理服务器利用插件为：http-proxy-middleware
 		// 	target: 'http://192.168.10.97:8090',
 		// 	changeOrigin: true,
@@ -51,6 +51,6 @@ module.exports = {
 		// }]
 		// parallel:require('os').maxCpuSpeed().length > 1  //是否为babel或ts使用thread-loader,系统必须多核心
 		// pwa: object  //向pwa插件传递参数
-		pluginOptions: {} // 不进行schema验证的对象，因此可以利用它传递第三方插件选项。
+		// pluginOptions: {} // 不进行schema验证的对象，因此可以利用它传递第三方插件选项。
 	}
 }
