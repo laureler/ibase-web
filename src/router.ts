@@ -16,10 +16,15 @@ export default new Router({
 		{
 			path: '/about',
 			name: 'about',
-			// route level code-splitting
-			// this generates a separate chunk (about.[hash].js) for this route
-			// which is lazy-loaded when the route is visited.
+			// 路由级别的代码分隔
+			// 使用箭头函数引入一个import会导致路由在访问的时候 懒加载
+			// 也就是说只有当路由被访问的时候，才会加载路由所需页面
 			component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-		}
+		},
+		{
+			path: '/tsVue',
+			name: 'tsVue',
+			component: () => import(/* webpackChunkName: "about" */ './components/VueInTS.vue')
+		},
 	]
 })

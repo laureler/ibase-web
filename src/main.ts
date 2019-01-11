@@ -11,7 +11,7 @@ Vue.config.productionTip = false
 
 Vue.prototype.$_ = _;
 Vue.prototype.$cookie = Cookie;
-Vue.prototype.$http = Http;
+Vue.prototype.$Axios = Http;
 
 new Vue({
 	router,

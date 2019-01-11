@@ -1,6 +1,6 @@
 <template>
 	<div class="hello">
-
+		<button>点击发送axios请求</button>
 	</div>
 </template>
 
@@ -41,8 +41,13 @@ export default class VueInTS extends Vue {
 		get computedMsg () {
 			return this.msg.split('').reverse().join('')
 		}
-		mounted () {
-
+		async mounted () {
+			try {
+				const data = await this.$Axios.get('/userList')
+				console.table(data)
+			} catch (e) {
+				console.table(e);
+			}
 		}
 		//* **************选项结束*****************//
 }

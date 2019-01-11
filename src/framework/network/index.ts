@@ -7,6 +7,7 @@ const token: string = Cookies.get('token') || '';
 // 覆盖 axios 默认配置
 _.assignIn(axios.defaults, {
 	// baseURL: '',
+	baseURL: 'https://www.easy-mock.com/mock/5c3890ef356df95905dc2349/vue3',
 	timeout: 30 * 1000,
 	headers: { 'Authorization': 'Basic ' + token, 'x-requested-with': 'XMLHttpRequest' },
 	params: {
