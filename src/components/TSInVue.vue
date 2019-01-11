@@ -1,6 +1,6 @@
 <template>
 	<div class="hello">
-		<button>点击发送axios请求</button>
+		<h2>typeScript 在vue中的使用</h2>
 	</div>
 </template>
 
