@@ -13,43 +13,54 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 import { Provide } from 'vue-property-decorator';
 
-
 import helloWorld from '@/components/HelloWorld.vue'
+// 分步声明数据 来保证每一个数据都是可推导观察的
+const AppProps = Vue.extend({
+	props: {
+		propMessage: String
+	}
+})
+
 	// 引入其他组件
 	@Component({
 		components: {
 			helloWorld
 		}
 	})
-// 声明组件 VueInTS
+	// 声明组件 VueInTS
 export default class VueInTS extends Vue {
-		//* **************选项开始*****************//
-		// data 数据
-		@Provide() obj: object = {}
-		@Provide() msg: string = '欢迎使用TypeScript!'
-		@Provide() times:number = 0
-		// methods 方法
-		addTimes (a:number):number { // 返回一个数字
-			console.log(this.obj);
-			this.times = this.times + 1;
-			return this.times
+//* **************选项开始*****************//
+	// data 数据
+	@Provide() obj: object = {}
+	@Provide() msg: string = '欢迎使用TypeScript!'
+	@Provide() times: number = 0
+
+	// methods 方法
+	addTimes (a: number): number { // 返回一个数字
+		console.log(this.obj);
+		this.times = this.times + 1;
+		return this.times
+	}
+
+	countNumber (a: number): void { // 没有返回值
+		console.log(a);
+	}
+
+	// computed 计算属性
+	get computedMsg () {
+		return this.msg.split('').reverse().join('')
+	}
+
+	async mounted () {
+		try {
+			const data = await this.$Axios.get('/userList')
+			console.table(data)
+		} catch (e) {
+			console.table(e);
 		}
-		countNumber (a:number):void { // 没有返回值
-			console.log(a);
-		}
-		// computed 计算属性
-		get computedMsg () {
-			return this.msg.split('').reverse().join('')
-		}
-		async mounted () {
-			try {
-				const data = await this.$Axios.get('/userList')
-				console.table(data)
-			} catch (e) {
-				console.table(e);
-			}
-		}
-		//* **************选项结束*****************//
+	}
+
+	//* **************选项结束*****************//
 }
 </script>
 

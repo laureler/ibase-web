@@ -12,7 +12,7 @@ _.assignIn(axios.defaults, {
 	headers: { 'Authorization': 'Basic ' + token, 'x-requested-with': 'XMLHttpRequest' },
 	params: {
 		locale: Cookies.get('language'),
-		_: new Date().getTime(),
+		_: new Date().getTime()
 	},
 	transformRequest: [function (data: any) {
 		// Do whatever you want to transform the data
