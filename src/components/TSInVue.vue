@@ -9,12 +9,22 @@
 		<button v-on:click = alertMessage>点击了本按钮就会触发事件</button>
 		<br>
 
-		<span>{{clickCount}}</span>
+		<span>计数器：{{clickCount}}</span>
 		<br>
 
 		<br>
 
 		<diyEvent v-on:dosome="emitClick"></diyEvent>
+		<br>
+		--------------------------------------------------
+		<h4>@model</h4>
+		<br>
+		--------------------------------------------------
+		<h4>@watch</h4>
+		<br>
+		<button v-on:click="sumCount">点击增加计数器数量</button><span>计数器：{{clickCount}}</span>
+		<br>
+		--------------------------------------------------
 	</div>
 </template>
 
@@ -25,7 +35,7 @@
 import Vue from 'vue'
 
 import Component from 'vue-class-component' // vue-class-component：强化Vue组件，使用 TypeScript/装饰器
-import { Emit, Prop, Provide } from 'vue-property-decorator'; // vue-property-decorator：在 vue-class-component 上 继续 增强更多的结合Vue 特性的装饰器
+import { Emit, Prop, Provide, Watch } from 'vue-property-decorator'; // vue-property-decorator：在 vue-class-component 上 继续 增强更多的结合Vue 特性的装饰器
 import { mapState, mapMutations } from 'vuex' // 引入vuex 中的辅助函数
 
 // import HelloWorld from '@/components/HelloWorld.vue'
@@ -65,6 +75,9 @@ export default class VueInTS extends Vue {
 	clickCount: number = 0													// 赋值一个拥有默认值的字符串
 	helloMsg = 'hello-' + this.propMessage									// 直接利用组件的prop属性来初始化数据
 
+
+
+	// props 属性
 	@Prop(Number) propA!: number											// (来自 Vue-Property-Decorator)
 	@Prop({ default: 'demoDefaultValue' }) propB!: number					// (来自 Vue-Property-Decorator) 设置默认值
 	@Prop([String, Boolean]) propC!: string | boolean						// (来自 Vue-Property-Decorator) 设置多类型
@@ -74,21 +87,76 @@ export default class VueInTS extends Vue {
 		propB2:{default:'demoDefaultValue', type:number},
 		propC2:{type:[string, boolean]}
 	}
+
+
+
 	// @Model // todo Model修饰符
-	// @provide // todo provide 修饰符
+
+
+	// @provide
  	@Provide('provideObj') provideObj: object = {
  		coponentName: 'tsInVue',
  		isFather: true
  	}
 	@Provide() times: number = 0
+	//	上述代码等价下面
+	provide () {
+		return {
+			provideObj2: {
+				isFather: true,
+				componentName: 'tsInVue'
+			},
+			times: 0
+		}
+	}
 
 
+
+	// 声明组件
 	components: {
 		diyEvent
 	}
+
+
+
+
+	@Watch('clickCount', { immediate: true, deep: true })
+	onClickCount (newVal, oldVal) {
+		console.warn(`监听到计数器clickCount在变化,由${oldVal}变化到${newVal}`)
+	}
+	@Watch('clickCount', { immediate: true, deep: true })
+	onClickCount2 (newVal, oldVal) {
+		console.warn(`监听到计数器clickCount在变化,由${oldVal}变化到${newVal}`)
+	}
+	// @watch增加了两个监听器，等同于下面的代码
+	/* watch:{
+		'clickCount':[{
+				handler:'onclickCount',
+				immediate:false,
+				deep:true
+			}, {
+				handler:'onclickCount2',
+				immediate:false,
+				deep:false
+			}
+			],
+	} */
+
+
+
+
+
+
+
+
+
+	// methods 方法直接调用
 	// 点击按钮会提示当前按钮内容
 	alertMessage (e):void{
 		alert(e.target.innerHTML)
+	}
+	sumCount () {		// 计数器增加1次
+		this.clickCount += 1
 	}
 	// computed 计算属性
 	get computedMsg (): string {
@@ -106,7 +174,7 @@ export default class VueInTS extends Vue {
 	// 实例方法 / 事件
 	// vm.$emit @Emit()
 	emitClick (obj): void { // 其实没有typeScript无法分析参数，只是手工约束
-		this.clickCount += 1
+		this.sumCount();
 		console.log('来自：TSInVUE父组件的关爱');
 		obj.str += '来自：TSInVUE父组件的关爱：emit'
 	}
