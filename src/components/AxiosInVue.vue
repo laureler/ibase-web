@@ -39,7 +39,7 @@ export default class VueInTS extends Vue {
 		}
 		// computed 计算属性
 		get computedMsg () {
-
+			return ''
 		}
 		// 使用 异步生命周期
 		async mounted () {
