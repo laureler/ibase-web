@@ -41,7 +41,7 @@ import { mapState, mapMutations } from 'vuex' // 引入vuex 中的辅助函数
 // import HelloWorld from '@/components/HelloWorld.vue'
 import hello from '@/components/Hello.vue'
 import diyEvent from '@/components/DIYEvent.vue'
-import get = Reflect.get;
+import MyMixin from '@/framework/mixin/mixin';
 
 // 你也可以分步声明数据 来确保每一个数据都是可推导观察的
 // 首先用vue注册组件，然后再把当前组件的属性通过继承的形式传递给下面
@@ -69,12 +69,16 @@ import get = Reflect.get;
 		])
 	})
 
-export default class VueInTS extends Vue {
+export default class VueInTS extends MyMixin {
 	// data 数据  你可以直接声明组件数据
 	propMessage!: string													// 赋值一个没有默认值的字符串
 	clickCount: number = 0													// 赋值一个拥有默认值的字符串
 	helloMsg = 'hello-' + this.propMessage									// 直接利用组件的prop属性来初始化数据
-
+	// 相同效果
+	// data:{
+	// propMessage:'',
+	// 	clickCount:0
+	// }
 
 
 	// props 属性
@@ -88,6 +92,8 @@ export default class VueInTS extends Vue {
 		propC2:{type:[string, boolean]}
 	}
 
+	// el:string = '#app' // 只有根实例才可以用el选项
+	// el:""
 
 
 	// @Model // todo Model修饰符
@@ -163,6 +169,10 @@ export default class VueInTS extends Vue {
 		return ''
 	}
 
+	// 生命周期钩子函数
+	created () {
+		console.log(this.mixinValue)	// mixinValue集成来自mixin.ts
+	}
 	async mounted () {
 		try {
 			const data = await this.$Axios.get('/userList')
