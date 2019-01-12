@@ -31,6 +31,7 @@ import { mapState, mapMutations } from 'vuex' // 引入vuex 中的辅助函数
 // import HelloWorld from '@/components/HelloWorld.vue'
 import hello from '@/components/Hello.vue'
 import diyEvent from '@/components/DIYEvent.vue'
+import get = Reflect.get;
 
 // 你也可以分步声明数据 来确保每一个数据都是可推导观察的
 // 首先用vue注册组件，然后再把当前组件的属性通过继承的形式传递给下面
@@ -75,13 +76,12 @@ export default class VueInTS extends Vue {
 	}
 	// @Model // todo Model修饰符
 	// @provide // todo provide 修饰符
-	/* @Provide() obj: object = {}
+ 	@Provide('provideObj') provideObj: object = {
+ 		coponentName: 'tsInVue',
+ 		isFather: true
+ 	}
 	@Provide() times: number = 0
-	addTimes (a: number): number { // 返回一个数字
-		console.log(this.obj);
-		this.times = this.times + 1;
-		return this.times
-	} */
+
 
 	components: {
 		diyEvent
@@ -107,14 +107,8 @@ export default class VueInTS extends Vue {
 	// vm.$emit @Emit()
 	emitClick (obj): void { // 其实没有typeScript无法分析参数，只是手工约束
 		this.clickCount += 1
-		obj.str += 'emit'
-	}
-	toogleVision (element) {
-		element.target.innerText += 'A'
-	}
-	@Emit()
-	addToCount (n:number):void{	// 参数n为数字，方法不会返回值
-		this.clickCount += n
+		console.log('来自：TSInVUE父组件的关爱');
+		obj.str += '来自：TSInVUE父组件的关爱：emit'
 	}
 }
 </script>
