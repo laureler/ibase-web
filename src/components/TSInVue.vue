@@ -185,10 +185,32 @@ export default class VueInTS extends MyMixin {
 	}
 
 	// 生命周期钩子函数
-	created () {
+	beforeCreate () {		// 实例创建前
+		console.group('%c%s', 'background-color:#e9edf2', 'beforeCreate--实例创建前状态')
+		console.log('%c%s', 'background-color:#e9edf2', 'el  :' + this.$el)
+		console.log('%c%s', 'background-color:#e9edf2', 'data  :' + this.$data)
+		console.log('%c%s', 'background-color:#e9edf2', 'clickCount  :' + this.clickCount)
+		// console.log('%c%s', 'background-color:#e9edf2', 'propMessage  :' + this.propMessage) // 这里就体现出TS的价值了，propMessage命名是string，却给出了undefined的类型
+	}
+	created () {			// 实例创建完成
+		console.group('%c%s', 'background-color:#e0e3ed', 'created--实例创建完成状态')
+		console.log('%c%s', 'background-color:#e0e3ed', 'el  :' + this.$el)
+		console.log('%c%s', 'background-color:#e0e3ed', 'data  :' + this.$data)
+		console.log('%c%s', 'background-color:#e0e3ed', 'clickCount  :' + this.clickCount)
 		console.log(this.mixinValue)	// mixinValue集成来自mixin.ts
 	}
-	async mounted () {
+	beforeMount () {		// 挂载实例前，一般用来获取组件无关渲染的数据
+		console.group('%c%s', 'background-color:#beaaca', 'beforeMount--挂载之前的状态')
+		console.log('%c%s', 'background-color:#beaaca', 'el  :' + this.$el)
+		console.log('%c%s', 'background-color:#beaaca', 'data  :' + this.$data)
+		console.log('%c%s', 'background-color:#beaaca', 'clickCount  :' + this.clickCount)
+	}
+	async mounted () {		// 已经挂载之后的状态 一般用来获取页面初始化的数据，这里使用了异步方法 async
+		console.group('%c%s', 'background-color:#6b5a84;color:white', 'mounted--已经挂载的状态')
+		console.debug('%c%s', 'background-color:#6b5a84;color:white', 'el  :' + this.$el)
+		console.log('%c%s', 'background-color:#6b5a84;color:white', 'data  :' + this.$data)
+		console.log('%c%s', 'background-color:#6b5a84;color:white', 'clickCount  :' + this.clickCount)
+
 		try {
 			const data = await this.$Axios.get('/userList')
 			console.table(data)
@@ -196,6 +218,23 @@ export default class VueInTS extends MyMixin {
 			console.table(e);
 		}
 	}
+	beforeUpdate () {		// 组件数据更新前，在组件数据更新的时候回优先触发更新前
+		console.group('%c%s', 'background-color:#f7eddc', 'beforeUpdate--数据更新前的状态')
+		// console.log('%c%s', 'background-color:#f7eddc', 'el  :' + this.$el.innerHTML)
+		console.log('%c%s', 'background-color:#f7eddc', 'data  :' + this.$data)
+		console.log('%c%s', 'background-color:#f7eddc', 'clickCount  :' + this.clickCount)
+	}
+	updated () {			// 组件数据更新后，在组件数据更新的时候，会在更新前事件触发后随之而触发
+		console.group('%c%s', 'background-color:#6e825e', 'updated--数据更新完成时状态')
+		console.log('%c%s', 'background-color:#6e825e', 'data  :' + this.$data)
+		console.log('%c%s', 'background-color:#6e825e', 'clickCount  :' + this.clickCount)
+	}
+	// 注意如果有keep-alive那么应当是使用 activated & deactivated
+	activated () {}				// 组件激活的时候调用
+	deactivated () {}			// 组件停用的时候调用
+	beforeDestory () {}			// 组件被销毁之前调用
+	destoryed () {}				// 组件被销毁之后调用
+
 	// 实例方法 / 事件
 	// vm.$emit @Emit()
 	emitClick (obj): void { // 其实没有typeScript无法分析参数，只是手工约束
