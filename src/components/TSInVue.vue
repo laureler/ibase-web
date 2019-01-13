@@ -29,7 +29,8 @@
 		<br>
 		计算属性默认根据缓存计算，但是在这里我们添加了noCache自定义装饰器@noCache，所以每次获取计算属性均为不带缓存的
 		<br>
-		<button v-on:click="alertTime">获取计算属性random的属性值</button>
+		<button v-on:click="alertTime">获取计算属性random的属性值</button>&nbsp;&nbsp;&nbsp;
+		<button v-on:click="alertTime2">获取计算属性random的属性值---带有缓存</button>
 		<span>计数器：{{random}}</span>
 		<br>
 		--------------------------------------------------
@@ -51,6 +52,7 @@ import { mapState, mapMutations } from 'vuex' // 引入vuex 中的辅助函数
 import diyEvent from '@/components/DIYEvent.vue'
 import MyMixin from '@/framework/mixin/mixin';
 import { NoCache } from '@/framework/decorators/index';
+
 // 你也可以分步声明数据 来确保每一个数据都是可推导观察的
 // 首先用vue注册组件，然后再把当前组件的属性通过继承的形式传递给下面
 /* const AppProps = Vue.extend({
@@ -136,11 +138,11 @@ export default class VueInTS extends MyMixin {
 
 	@Watch('clickCount', { immediate: true, deep: true })
 	onClickCount (newVal, oldVal) {
-		console.warn(`监听到计数器clickCount在变化,由${oldVal}变化到${newVal}`)
+		console.log('%c%s', 'background-color:white;font-weight: bold;', `onClickCount:监听到计数器clickCount在变化,由${oldVal}变化到${newVal}`)
 	}
 	@Watch('clickCount', { immediate: true, deep: true })
 	onClickCount2 (newVal, oldVal) {
-		console.warn(`监听到计数器clickCount在变化,由${oldVal}变化到${newVal}`)
+		console.log('%c%s', 'background-color:white;font-weight: bold;', `onClickCount2:监听到计数器clickCount在变化,由${oldVal}变化到${newVal}`)
 	}
 	// @watch增加了两个监听器，等同于下面的代码
 	/* watch:{
@@ -172,6 +174,9 @@ export default class VueInTS extends MyMixin {
 	alertTime () {
 		alert(this.random)
 	}
+	alertTime2 () {
+		alert(this.random2)
+	}
 	sumCount () {		// 计数器增加1次
 		this.clickCount += 1
 	}
@@ -180,9 +185,16 @@ export default class VueInTS extends MyMixin {
 	get random () {
 		return Math.random()
 	}
+	get random2 () {
+		return Math.random()
+	}
 	get computedMsg (): string {
 		return ''
 	}
+
+
+
+
 
 	// 生命周期钩子函数
 	beforeCreate () {		// 实例创建前
@@ -191,6 +203,7 @@ export default class VueInTS extends MyMixin {
 		console.log('%c%s', 'background-color:#e9edf2', 'data  :' + this.$data)
 		console.log('%c%s', 'background-color:#e9edf2', 'clickCount  :' + this.clickCount)
 		// console.log('%c%s', 'background-color:#e9edf2', 'propMessage  :' + this.propMessage) // 这里就体现出TS的价值了，propMessage命名是string，却给出了undefined的类型
+		console.groupEnd()
 	}
 	created () {			// 实例创建完成
 		console.group('%c%s', 'background-color:#e0e3ed', 'created--实例创建完成状态')
@@ -198,12 +211,14 @@ export default class VueInTS extends MyMixin {
 		console.log('%c%s', 'background-color:#e0e3ed', 'data  :' + this.$data)
 		console.log('%c%s', 'background-color:#e0e3ed', 'clickCount  :' + this.clickCount)
 		console.log(this.mixinValue)	// mixinValue集成来自mixin.ts
+		console.groupEnd()
 	}
 	beforeMount () {		// 挂载实例前，一般用来获取组件无关渲染的数据
 		console.group('%c%s', 'background-color:#beaaca', 'beforeMount--挂载之前的状态')
 		console.log('%c%s', 'background-color:#beaaca', 'el  :' + this.$el)
 		console.log('%c%s', 'background-color:#beaaca', 'data  :' + this.$data)
 		console.log('%c%s', 'background-color:#beaaca', 'clickCount  :' + this.clickCount)
+		console.groupEnd()
 	}
 	async mounted () {		// 已经挂载之后的状态 一般用来获取页面初始化的数据，这里使用了异步方法 async
 		console.group('%c%s', 'background-color:#6b5a84;color:white', 'mounted--已经挂载的状态')
@@ -217,30 +232,61 @@ export default class VueInTS extends MyMixin {
 		} catch (e) {
 			console.table(e);
 		}
+		console.groupEnd()
 	}
 	beforeUpdate () {		// 组件数据更新前，在组件数据更新的时候回优先触发更新前
 		console.group('%c%s', 'background-color:#f7eddc', 'beforeUpdate--数据更新前的状态')
 		// console.log('%c%s', 'background-color:#f7eddc', 'el  :' + this.$el.innerHTML)
 		console.log('%c%s', 'background-color:#f7eddc', 'data  :' + this.$data)
 		console.log('%c%s', 'background-color:#f7eddc', 'clickCount  :' + this.clickCount)
+		console.groupEnd()
 	}
 	updated () {			// 组件数据更新后，在组件数据更新的时候，会在更新前事件触发后随之而触发
 		console.group('%c%s', 'background-color:#6e825e', 'updated--数据更新完成时状态')
 		console.log('%c%s', 'background-color:#6e825e', 'data  :' + this.$data)
 		console.log('%c%s', 'background-color:#6e825e', 'clickCount  :' + this.clickCount)
+		console.groupEnd()
 	}
 	// 注意如果有keep-alive那么应当是使用 activated & deactivated
 	activated () {}				// 组件激活的时候调用
 	deactivated () {}			// 组件停用的时候调用
 	beforeDestory () {}			// 组件被销毁之前调用
-	destoryed () {}				// 组件被销毁之后调用
+	destoryed () {				// 组件被销毁之后调用
+	}
+
+	// 路由钩子函数
+	// The class component now treats beforeRouteEnter
+	// and beforeRouteLeave as Vue Router hooks
+	beforeRouteEnter (to, from, next) {
+		console.log('beforeRouteEnter')
+		console.log('beforeRouteEnter')
+		console.log('beforeRouteEnter')
+		console.log('beforeRouteEnter')
+		console.log('beforeRouteEnter')
+		next() // needs to be called to confirm the navigation
+	}
+
+	beforeRouteLeave (to, from, next) {
+		debugger
+		console.log('beforeRouteLeave')
+		next() // needs to be called to confirm the navigation
+	}
+	beforeRouteUpdate (to, from, next) {
+
+	}
+
+
+
+
+
+
 
 	// 实例方法 / 事件
 	// vm.$emit @Emit()
 	emitClick (obj): void { // 其实没有typeScript无法分析参数，只是手工约束
 		this.sumCount();
 		console.log('来自：TSInVUE父组件的关爱');
-		obj.str += '来自：TSInVUE父组件的关爱：emit'
+		obj.str += '来自：TSInVUE父组件的关爱←_←：emit'
 	}
 }
 </script>
