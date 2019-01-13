@@ -5,5 +5,5 @@ import Component from 'vue-class-component'
 // You can declare a mixin as the same style as components.
 @Component
 export default class MyMixin extends Vue {
-	mixinValue = 'Hello im from mixin.ts'
+  	mixinValue = 'Hello im from mixin.ts'
 }

@@ -67,9 +67,9 @@ module.exports = {
 		// 禁止未使用过的表达式
 		'no-unused-expressions': 'warn',
 		'no-undef': 'warn',
-		'no-multi-spaces':[1,{
-			"exceptions": { "Property": true }, //需要属性前不允许有空格
-			"ignoreEOLComments": true   //忽略行尾注释之前的空格
+		'no-multi-spaces': [1, {
+			'exceptions': { 'Property': true }, // 需要属性前不允许有空格
+			'ignoreEOLComments': true   // 忽略行尾注释之前的空格
 		}]
 	}
 }
