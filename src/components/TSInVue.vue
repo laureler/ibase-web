@@ -96,7 +96,7 @@ export default class VueInTS extends MyMixin {
 	@Prop({ default: 'demoDefaultValue' }) propB!: number					// (来自 Vue-Property-Decorator) 设置默认值
 	@Prop([String, Boolean]) propC!: string | boolean						// (来自 Vue-Property-Decorator) 设置多类型
 	// 上述修饰符的等价语法(propA == propA2) (propB == propB2) (propC == propC2)
-	props:{
+	props?:{
 		propA2:{type:number},
 		propB2:{default:'demoDefaultValue', type:number},
 		propC2:{type:[string, boolean]}
@@ -129,19 +129,20 @@ export default class VueInTS extends MyMixin {
 
 
 	// 声明组件
-	components: {
-		diyEvent
+	components?: {
+
+		diyEvent:any
 	}
 
 
 
 
 	@Watch('clickCount', { immediate: true, deep: true })
-	onClickCount (newVal, oldVal) {
+	onClickCount (newVal:string, oldVal:string) {
 		console.log('%c%s', 'background-color:white;font-weight: bold;', `onClickCount:监听到计数器clickCount在变化,由${oldVal}变化到${newVal}`)
 	}
 	@Watch('clickCount', { immediate: true, deep: true })
-	onClickCount2 (newVal, oldVal) {
+	onClickCount2 (newVal:string, oldVal:string) {
 		console.log('%c%s', 'background-color:white;font-weight: bold;', `onClickCount2:监听到计数器clickCount在变化,由${oldVal}变化到${newVal}`)
 	}
 	// @watch增加了两个监听器，等同于下面的代码
@@ -168,7 +169,7 @@ export default class VueInTS extends MyMixin {
 
 	// methods 方法直接调用
 	// 点击按钮会提示当前按钮内容
-	alertMessage (e):void{
+	alertMessage (e:any):void{
 		alert(e.target.innerHTML)
 	}
 	alertTime () {
@@ -263,7 +264,7 @@ export default class VueInTS extends MyMixin {
 
 	// 实例方法 / 事件
 	// vm.$emit @Emit()
-	emitClick (obj): void { // 其实没有typeScript无法分析参数，只是手工约束
+	emitClick (obj:any): void { // 其实没有typeScript无法分析参数，只是手工约束
 		this.sumCount();
 		console.log('来自：TSInVUE父组件的关爱');
 		obj.str += '来自：TSInVUE父组件的关爱←_←：emit'
