@@ -10,10 +10,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		count: 0,//计数器
+		count: 0// 计数器
 	},
 	mutations: {
-		increment(state: CounterState) {
+		increment (state: CounterState) {
 			state.count++
 		}
 	},

@@ -26,8 +26,8 @@ export default class Home extends Vue {
 	beforeRouteLeave (to, from, next) {
 		console.group('%c%s', 'background-color:white', `组件内部路由守卫钩子函数：beforeRouteLeave`)
 		console.log('%c%s', 'background-color:#6e825e', 'beforeRouteLeave')
-		next() // needs to be called to confirm the navigation
 		console.groupEnd()
+		next() // needs to be called to confirm the navigation
 	}
 	beforeRouteUpdate (to, from, next) {
 		console.group('%c%s', 'background-color:white', `组件内部路由守卫钩子函数：beforeRouteUpdate`)

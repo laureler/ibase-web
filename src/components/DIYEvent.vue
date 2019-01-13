@@ -26,10 +26,10 @@ export default class diyEvent extends Vue {
 	@Inject() provideObj!:object
 
 	@Prop() private msg!: string;
-	clickToAdd (e):void{
+	clickToAdd ():void{
 		this.str += 'A'
 	}
-	clickEmit (e):void{
+	clickEmit ():void{
 		this.$emit('dosome', this)
 	}
 	@Emit('dosome')

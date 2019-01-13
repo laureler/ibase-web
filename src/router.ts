@@ -24,15 +24,14 @@ let router = new Router({
 });
 
 // 全局前置路由守卫
-router.beforeEach((to,from,next)=>{         //全局前置路由
+router.beforeEach((to, from, next) => { // 全局前置路由
 	console.group('路由', 'background-color:red', '路由守卫:beforeEach')
-	next()                                          //注意，一定要使用 next() 来释放钩子函数
-
+	next() // 注意，一定要使用 next() 来释放钩子函数
 })
-router.beforeResolve((to,from,next)=>{
-	next()                                          //注意，一定要使用next() 来释放钩子函数
+router.beforeResolve((to, from, next) => {
+	next() // 注意，一定要使用next() 来释放钩子函数
 })
-router.afterEach((to,from)=>{
+router.afterEach((to, from) => {
 	console.groupEnd()
 })
 export default router
