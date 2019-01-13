@@ -25,6 +25,14 @@
 		<button v-on:click="sumCount">点击增加计数器数量</button><span>计数器：{{clickCount}}</span>
 		<br>
 		--------------------------------------------------
+		<h4>@computed</h4>
+		<br>
+		计算属性默认根据缓存计算，但是在这里我们添加了noCache自定义装饰器@noCache，所以每次获取计算属性均为不带缓存的
+		<br>
+		<button v-on:click="alertTime">获取计算属性random的属性值</button>
+		<span>计数器：{{random}}</span>
+		<br>
+		--------------------------------------------------
 	</div>
 </template>
 
@@ -39,10 +47,10 @@ import { Emit, Prop, Provide, Watch } from 'vue-property-decorator'; // vue-prop
 import { mapState, mapMutations } from 'vuex' // 引入vuex 中的辅助函数
 
 // import HelloWorld from '@/components/HelloWorld.vue'
-import hello from '@/components/Hello.vue'
+
 import diyEvent from '@/components/DIYEvent.vue'
 import MyMixin from '@/framework/mixin/mixin';
-
+import { NoCache } from '@/framework/decorators/index';
 // 你也可以分步声明数据 来确保每一个数据都是可推导观察的
 // 首先用vue注册组件，然后再把当前组件的属性通过继承的形式传递给下面
 /* const AppProps = Vue.extend({
@@ -161,10 +169,17 @@ export default class VueInTS extends MyMixin {
 	alertMessage (e):void{
 		alert(e.target.innerHTML)
 	}
+	alertTime () {
+		alert(this.random)
+	}
 	sumCount () {		// 计数器增加1次
 		this.clickCount += 1
 	}
 	// computed 计算属性
+	@NoCache
+	get random () {
+		return Math.random()
+	}
 	get computedMsg (): string {
 		return ''
 	}
