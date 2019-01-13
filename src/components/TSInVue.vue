@@ -254,26 +254,6 @@ export default class VueInTS extends MyMixin {
 	destoryed () {				// 组件被销毁之后调用
 	}
 
-	// 路由钩子函数
-	// The class component now treats beforeRouteEnter
-	// and beforeRouteLeave as Vue Router hooks
-	beforeRouteEnter (to, from, next) {
-		console.log('beforeRouteEnter')
-		console.log('beforeRouteEnter')
-		console.log('beforeRouteEnter')
-		console.log('beforeRouteEnter')
-		console.log('beforeRouteEnter')
-		next() // needs to be called to confirm the navigation
-	}
-
-	beforeRouteLeave (to, from, next) {
-		debugger
-		console.log('beforeRouteLeave')
-		next() // needs to be called to confirm the navigation
-	}
-	beforeRouteUpdate (to, from, next) {
-
-	}
 
 
 
