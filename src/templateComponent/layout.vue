@@ -1,7 +1,6 @@
 <template>
 	<div class="hello">
 		layout 布局
-
 		{{msg}}
 		<div>
 			<div>

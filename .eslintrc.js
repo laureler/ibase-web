@@ -17,7 +17,8 @@ module.exports = {
 		__static: true
 	},
 	plugins: [
-		'html'
+		'html',
+		'typescript'
 	],
 	'rules': {
 		// 允许拓展原生对象的私有属性
