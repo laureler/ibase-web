@@ -1,3 +1,4 @@
+/// <reference path="./typings/sgui.d.ts" />
 import Vue from 'vue' // 引入vue.js
 import App from './App.vue' // 引入根组件
 import index from '@/framework/router' // 引入 vue-router
@@ -6,6 +7,10 @@ import store from './store' // 引入 vue-store
 import Http from '@/framework/network/index' // 引入HTTP，1. axios
 import _ from 'lodash'; // 引入lodash
 import Cookie from 'js-cookie' // 引入jscookie
+
+import sgui from 'southgisui'
+import 'southgisui/lib/sgui-theme/index.css'
+Vue.use(sgui)
 
 Vue.config.productionTip = false // 禁用产品模式下的vue工程提示
 
