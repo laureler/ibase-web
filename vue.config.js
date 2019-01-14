@@ -1,9 +1,16 @@
 // vue.config.js
+// 开启webpack分析功能
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// 产品模式变量
+const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV);
+// 开启 gzip
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
+
 module.exports = {
 // 选项...
 	baseUrl: process.env.NODE_ENV === 'production'
-		? 'mainWeb'
+		? '/'
 		: '/',
 	// outputDir:'dist',        //编译输出目录
 	// assetsDir:'',
@@ -18,6 +25,24 @@ module.exports = {
 	// crossorigin:undefined    //在html-webpack-plugin构建时设置link/script标签的 crossorigin属性，直接写入不算。（H5属性）
 	// integrity:false          // 在html-webpack-plugin构建时设置注入的标签，启动SRI。 CDN用到
 	// configureWebpack:{}      //扩展webpack插件，此对象会被merge到webpack最终配置中。
+	 configureWebpack: config => {
+		if (IS_PROD) {
+			const plugins = [];
+			plugins.push(
+				new CompressionWebpackPlugin({
+					filename: '[path].gz[query]',
+					algorithm: 'gzip',
+					test: productionGzipExtensions,
+					threshold: 512,
+					minRatio: 0.8
+				})
+			);
+			config.plugins = [
+				...config.plugins,
+				...plugins
+			];
+		}
+	},
 	// chainWebpack:function    // 接受一个机遇webpack-chain的chainableConfig实例，允许更细粒度修改。
 	chainWebpack: config => {
 		// webpack  打包分析
