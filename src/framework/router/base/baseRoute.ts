@@ -8,7 +8,6 @@ let baseRoute:RouteConfig[] = [
 	{ path: '/', name: 'home', component: Home },
 	{ path: '/homeBak', name: 'home', component: HomeBak },
 	// 项目介绍相关
-	{ path: '/about', name: 'about', component: () => import(/* webpackChunkName: "about" */ '../../../views/base/About.vue') },
-	// { path: '/tsInVue', name: 'tsInVue', component: () => import('./components/TSInVue.vue') }, // typeScript在vue中的使用
+	{ path: '/about', name: 'about', component: () => import(/* webpackChunkName: "about" */ '../../../views/base/About.vue') }
 ]
 export default baseRoute
