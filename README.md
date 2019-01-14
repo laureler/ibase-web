@@ -1,5 +1,18 @@
 # ibase-web
 
+## 项目架构
+
+- [x] vue
+- [x] vue-cli3
+- [x] TypeScript
+- [x] axios
+- [x] vuex
+- [x] vueStore
+- [x] 
+- [ ] 编码
+- [ ] 测试
+- [ ] 交付
+
 ## Project setup
 ```
 npm install

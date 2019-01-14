@@ -1,26 +1,25 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Router, {Route, RouteConfig } from 'vue-router'
+import baseRoute from './baseRoute'
+import gdbdcRoute from './gdbdcRoute'
 
 Vue.use(Router)
-
+/**
+ *
+ * @param baseRoute     基础路由配置
+ * @param mixinRoute    需要混入路由配置
+ */
+let mergeRoutes = function (baseRoute:RouteConfig[], mixinRoute?:RouteConfig[]):RouteConfig[] {
+	if (typeof mixinRoute === 'undefined') {
+		return baseRoute
+	} else {
+		return [...baseRoute, ...mixinRoute];
+	}
+}
 let router = new Router({
 	mode: 'history',
 	base: process.env.BASE_URL,
-	routes: [
-		{
-			path: '/',
-			name: 'home',
-			component: Home
-		},
-		// 路由级别的代码分隔
-		// 使用箭头函数引入一个import会导致路由在访问的时候 懒加载
-		// 也就是说只有当路由被访问的时候，才会加载路由所需页面
-		{ path: '/about', name: 'about', component: () => import(/* webpackChunkName: "about" */ './views/About.vue') }, // 项目介绍相关
-		// { path: '/tsInVue', name: 'tsInVue', component: () => import('./components/TSInVue.vue') }, // typeScript在vue中的使用
-		{ path: '/tsInVue', name: 'tsInVue', component: () => import('./views/TypeScriptDemo.vue') }, // typeScript在vue中的使用
-		{ path: '/AxiosInVue', name: 'AxiosInVue', component: () => import('./components/AxiosInVue.vue') } // Axios在Vue中的使用
-	]
+	routes: mergeRoutes(baseRoute, gdbdcRoute)
 });
 
 // 全局前置路由守卫
