@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router, {Route, RouteConfig } from 'vue-router'
-import baseRoute from './baseRoute'
-import gdbdcRoute from './gdbdcRoute'
+import './routerHooks'
+import baseRoute from './base/baseRoute'
+import gdbdcRoute from './gdbdc/gdbdcRoute'
 
 Vue.use(Router)
 /**
