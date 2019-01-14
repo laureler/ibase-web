@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "buildModren": "vue-cli-service build --modern",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "analyz": "vue-cli-service build --mode analyz"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -23,10 +24,10 @@
   },
   "devDependencies": {
     "@types/chai": "^4.1.0",
-    "@types/lodash": "^4.14.119",
-    "@types/qs": "6.5.1",
     "@types/js-cookie": "2.1.0",
+    "@types/lodash": "^4.14.119",
     "@types/mocha": "^5.2.4",
+    "@types/qs": "6.5.1",
     "@vue/cli-plugin-babel": "^3.2.0",
     "@vue/cli-plugin-eslint": "^3.2.0",
     "@vue/cli-plugin-typescript": "^3.2.0",
@@ -36,16 +37,19 @@
     "@vue/eslint-config-typescript": "^3.2.0",
     "@vue/test-utils": "^1.0.0-beta.20",
     "babel-eslint": "^10.0.1",
+    "brotli-webpack-plugin": "^1.0.0",
     "chai": "^4.1.2",
+    "compression-webpack-plugin": "^2.0.0",
     "eslint": "^5.8.0",
     "eslint-plugin-html": "^5.0.0",
-    "eslint-plugin-vue": "^5.0.0",
     "eslint-plugin-typescript": "^0.14.0",
+    "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^8.1.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "typescript": "~3.1.1",
-    "vue-template-compiler": "^2.5.21"
+    "vue-template-compiler": "^2.5.21",
+    "webpack-bundle-analyzer": "^3.0.3"
   },
   "postcss": {
     "plugins": {

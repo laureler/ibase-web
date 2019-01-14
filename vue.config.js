@@ -1,6 +1,7 @@
 // vue.config.js
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
-	// 选项...
+// 选项...
 	baseUrl: process.env.NODE_ENV === 'production'
 		? 'mainWeb'
 		: '/',
@@ -18,6 +19,15 @@ module.exports = {
 	// integrity:false          // 在html-webpack-plugin构建时设置注入的标签，启动SRI。 CDN用到
 	// configureWebpack:{}      //扩展webpack插件，此对象会被merge到webpack最终配置中。
 	// chainWebpack:function    // 接受一个机遇webpack-chain的chainableConfig实例，允许更细粒度修改。
+	chainWebpack: config => {
+		// webpack  打包分析
+		if (process.env.IS_ANALYZ) {
+			config.plugin('webpack-report')
+				.use(BundleAnalyzerPlugin, [{
+					analyzerMode: 'static'
+				}]);
+		}
+	},
 	css: {
 		// modules:false    //只有*.module结尾的文件才会被认为css module模块，如果设置为true，所有的[css/scss/sass/less/sty*]文件都会认为css module
 		// extract: process.env.NODE_ENV == 'production' ? true : false  //是否把css从内联样式抽取出来，如果你是开发组件库，建议你(哪怕是生产环境)不要抽取,开发模式为了热部署，就不抽取了。
