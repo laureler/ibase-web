@@ -21,6 +21,7 @@ module.exports = {
 		'typescript'
 	],
 	'rules': {
+		'no-useless-escape':0,
 		// 允许拓展原生对象的私有属性
 		'no-extend-native': 0,
 		// allow paren-less arrow functions
