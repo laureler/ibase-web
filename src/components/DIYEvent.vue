@@ -22,7 +22,7 @@ import { Component, Emit, Inject, Prop, Vue } from 'vue-property-decorator'
 export default class diyEvent extends Vue {
 	str:string = ''
 
-@Inject() times!:number
+	@Inject() times!:number
 	@Inject() provideObj!:object
 
 	@Prop() private msg!: string;

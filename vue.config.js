@@ -1,4 +1,5 @@
 // vue.config.js
+const webpack = require('webpack');
 // 开启webpack分析功能
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 // 产品模式变量
@@ -27,7 +28,14 @@ module.exports = {
 	// configureWebpack:{}      //扩展webpack插件，此对象会被merge到webpack最终配置中。
 	 configureWebpack: config => {
 		if (IS_PROD) {
-			const plugins = [];
+			const plugins = [
+				 new webpack.ProvidePlugin({
+					jQuery: 'jquery',
+					jquery: 'jquery',
+					$: 'jquery',
+				    'window.jQuery': 'jquery'
+				})
+			];
 			plugins.push(
 				new CompressionWebpackPlugin({
 					filename: '[path].gz[query]',
