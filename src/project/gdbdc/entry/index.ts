@@ -1,5 +1,4 @@
-/// <reference path="../../typings/sgui.d.ts" />
-
+/// <reference path="../../../typings/sgui.d.ts" />
 import Vue from 'vue'                                   // 引入vue.js
 import App from '@/App.vue'                             // 引入根组件
 import index from '@/framework/router/index.ts'                  // 引入 vue-router
@@ -12,9 +11,10 @@ import _ from 'lodash';                                 // 引入lodash
 import Cookie from 'js-cookie'                          // 引入jscookie
 import $ from 'jquery'                                  // 引入jquery
 
-import sgui from 'southgisui'                            // 引入sgui全部组件
-import 'southgisui/lib/sgui-theme/index.css'             // 引入sgui.css
-Vue.use(sgui)                                            // 引入sgui组件
+
+import 'ant-design-vue/dist/antd.css';
+import antDesignVue from 'ant-design-vue';
+Vue.use(antDesignVue)
 
 Vue.config.productionTip = false                        // 禁用产品模式下的vue工程提示
 
@@ -24,7 +24,7 @@ Vue.prototype.$cookie = Cookie;                         // 挂载 $cookie 到vue
 Vue.prototype.$Axios = Http;                            // 挂载 $Axios  到HTTP根实例上
 
 // @ts-ignore
-window['$']  = window['jquery'] = $
+// window['$'] = window['jquery'] = $
 
 // 初始化vue组件并且把vue根实例挂载到 #app
 let vueInstance = new Vue({

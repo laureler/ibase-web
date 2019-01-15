@@ -9,6 +9,7 @@ let gdbdcRoute:RouteConfig[] = [
 	// typeScript在vue中的使用
 	// todo 为什么 import 包括在方法体 {} 里面就会访问不到？
 	// { path: '/tsInVue', name: 'tsInVue', component: () => import('@/project/gdbdc/views/TypeScriptDemo.vue') }
-	{ path: '/tsInVue', name: 'tsInVue', component: () => import('@/project/gdbdc/views/TypeScriptDemo.vue') }
+	{ path: '/tsInVue', name: 'tsInVue', component: () => import('@/project/gdbdc/views/TypeScriptDemo.vue') },
+	{ path: '/basicDemo', name: 'basicDemo', component: () => import('@/project/gdbdc/views/BasicDemo.vue') }
 ]
 export default gdbdcRoute

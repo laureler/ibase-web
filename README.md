@@ -1,5 +1,10 @@
 # ibase-web
 
+## 代办事项
+- [x] 
+- [x] vue-cli3
+- [x] TypeScript
+
 ## 项目架构
 
 - [x] vue
