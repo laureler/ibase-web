@@ -7,6 +7,8 @@ let gdbdcRoute:RouteConfig[] = [
 	// Axios在Vue中的使用
 	{ path: '/AxiosInVue', name: 'AxiosInVue', component: () => import('../../../components/AxiosInVue.vue') },
 	// typeScript在vue中的使用
-	{ path: '/tsInVue', name: 'tsInVue', component: () => import('../../../views/gdbdc/TypeScriptDemo.vue') }
+	// todo 为什么 import 包括在方法体 {} 里面就会访问不到？
+	// { path: '/tsInVue', name: 'tsInVue', component: () => import('@/project/gdbdc/views/TypeScriptDemo.vue') }
+	{ path: '/tsInVue', name: 'tsInVue', component: () => import('@/project/gdbdc/views/TypeScriptDemo.vue') }
 ]
 export default gdbdcRoute
