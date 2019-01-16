@@ -24,7 +24,7 @@ Vue.prototype.$cookie = Cookie;                         // 挂载 $cookie 到vue
 Vue.prototype.$Axios = Http;                            // 挂载 $Axios  到HTTP根实例上
 
 // @ts-ignore
-window['$']  = window['jquery'] = $
+window['$'] = window['jquery'] = $
 
 // 初始化vue组件并且把vue根实例挂载到 #app
 let vueInstance = new Vue({

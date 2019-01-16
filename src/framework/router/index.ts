@@ -11,15 +11,17 @@ Vue.use(Router)
  * @param mixinRoute    需要混入路由配置
  */
 let mergeRoutes = function (baseRoute:RouteConfig[], mixinRoute?:RouteConfig[]):RouteConfig[] {
+	let mergeRoute!:RouteConfig[];
 	if (typeof mixinRoute === 'undefined') {
 		return baseRoute
 	} else {
-		return [...baseRoute, ...mixinRoute];
+		mergeRoute = [...baseRoute, ...mixinRoute];
+		return mergeRoute
 	}
 }
 let router = new Router({
 	mode: 'history',
-	base: process.env.BASE_URL,
+	base: '',
 	routes: mergeRoutes(baseRoute, gdbdcRoute)
 });
 

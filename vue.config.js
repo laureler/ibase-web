@@ -9,7 +9,7 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
 
 module.exports = {
-// 选项...
+	// 选项...
 	baseUrl: process.env.NODE_ENV === 'production'
 		? '/'
 		: '/',
@@ -17,7 +17,7 @@ module.exports = {
 	// assetsDir:'',
 	// indexPath:''             //
 	// filenameHashing:true,    //为文件名添加hash值
-	// pages:undefind,  // todo 多页面模式运行
+	// pages:undefind,          // todo 多页面模式运行
 	// lintOnSave:true,
 	lintOnSave: process.env.NODE_ENV !== 'production' ? true : false,
 	runtimeCompiler: true, // 开启vue template渲染模板选项
@@ -26,7 +26,7 @@ module.exports = {
 	// crossorigin:undefined    //在html-webpack-plugin构建时设置link/script标签的 crossorigin属性，直接写入不算。（H5属性）
 	// integrity:false          // 在html-webpack-plugin构建时设置注入的标签，启动SRI。 CDN用到
 	// configureWebpack:{}      //扩展webpack插件，此对象会被merge到webpack最终配置中。
-	 configureWebpack: config => {
+	configureWebpack: config => {
 		if (IS_PROD) {
 			const plugins = [
 				 new webpack.ProvidePlugin({
@@ -50,6 +50,7 @@ module.exports = {
 				...plugins
 			];
 		}
+		config.entry.app = `./src/${process.env.MAIN_NAME}.ts`
 	},
 	// chainWebpack:function    // 接受一个机遇webpack-chain的chainableConfig实例，允许更细粒度修改。
 	chainWebpack: config => {

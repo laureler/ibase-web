@@ -1,7 +1,7 @@
 # ibase-web
 
 ## 代办事项
-- [x] 
+- [x] 考虑如何把 路由动态插入到主框架中
 - [x] vue-cli3
 - [x] TypeScript
 

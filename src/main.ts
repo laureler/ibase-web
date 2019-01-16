@@ -1,3 +1,3 @@
-import vueInstance from '@/project/gdbdc/entry/index'
+import vueInstance from '@/framework/entry/index'
 
 vueInstance.$mount('#app')
