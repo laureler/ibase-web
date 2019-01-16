@@ -1,7 +1,9 @@
 <template>
 	<div class="hello">
-
-		<HomeLayout/>
+	<!--	<headerBar/>
+		<leftBar/>
+		<content/>-->
+		<ABasic></ABasic>
 	</div>
 </template>
 
@@ -9,17 +11,19 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 import HomeLayout from '@/components/sguiDemo/HomeLayout.vue'
+import ABasic from '@/components/A-Basic.vue';
 
 @Component({
 	components: {
-		HomeLayout
+		HomeLayout,
+		ABasic
 	}
 })
 
 
 
 export default class Layout extends Vue {
-	@Prop() private msg!: string;
+	@Prop() private msg: string;
 }
 </script>
 

@@ -13,7 +13,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 // @ is an alias to /src
-import Layout from '@/template/layout.vue'
+import Layout from '@/template/HomeTemplate.vue'
 
 
 @Component({

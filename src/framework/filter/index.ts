@@ -30,7 +30,7 @@ Vue.filter('formatDate', (v:number, params:any, format:string) => {
 Vue.filter('propertyNameFilter', (params:string) => {
 	if (!params) { return '' }
 	let name = params.split(',');
-	if (name.length == 1) {
+	if (name.length === 1) {
 		return name[0]
 	} else {
 		return name[name.length - 2];

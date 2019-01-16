@@ -18,6 +18,7 @@ module.exports = {
 	},
 	plugins: [
 		'html',
+		'vue',
 		'typescript'
 	],
 	'rules': {

@@ -11,6 +11,7 @@
   ],
   "compilerOptions": {
 //    "noImplicitAny": true,                //不要在表达式和声明上有隐含的any类型时报错
+    "strictPropertyInitialization":false, //暂时禁用 无构造方法的警告
     "target": "esnext",                   //指定ECMAscript的目标标准，esnext意为 最新的规范
     "module": "esnext",                   //采用模块系统
     "strict": true,                       //严格模式来解析
